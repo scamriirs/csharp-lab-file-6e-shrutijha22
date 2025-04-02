@@ -1,0 +1,51 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace BMI_CAL
+{
+    public partial class Form1: Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                double weight = double.Parse(textBox1.Text); 
+                double height = double.Parse(textBox2.Text); 
+
+                double bmi = weight / (height * height); 
+
+                textBox3.Text = bmi.ToString("0.00");
+
+                if (bmi < 18.5)
+                    textBox4.Text = "Underweight";
+                else if (bmi >= 18.5 && bmi < 24.9)
+                    textBox4.Text = "Normal weight";
+                else if (bmi >= 25 && bmi < 29.9)
+                    textBox4.Text = "Overweight";
+                else
+                    textBox4.Text = "Obese";
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Please enter valid numbers for weight and height.");
+            }
+        }
+    }
+}
